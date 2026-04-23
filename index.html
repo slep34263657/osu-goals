@@ -6,6 +6,7 @@
 <title>osu! score goals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --bg:#181818;
@@ -17,57 +18,103 @@
   --dim:#808080;
   --dimmer:#484848;
   --pink:#ff6b9d;
-  --pink-bg:rgba(255,107,157,0.1);
-  --green:#6bdb8f;
-  --red:#e05c5c;
   --mono:'DM Mono', monospace;
   --sans:'DM Sans', sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;min-height:100vh}
-header{height:56px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg)}
+
+header{
+height:56px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;
+border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg)
+}
+
 .wordmark{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
 .wordmark em{font-style:normal;color:var(--pink)}
+
 .header-right{display:flex;gap:.75rem;align-items:center}
-.avatar-wrap{display:none;gap:.6rem;align-items:center}
-body.authed .avatar-wrap{display:flex}
-.avatar-wrap img{width:26px;height:26px;border-radius:50%}
-.btn-ghost{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border2);background:none;color:var(--dim);padding:.4rem .85rem;cursor:pointer}
+
+.btn-ghost{
+font-family:var(--mono);
+font-size:.62rem;
+border:1px solid var(--border2);
+background:none;
+color:var(--dim);
+padding:.4rem .85rem;
+cursor:pointer;
+text-transform:uppercase;
+}
+
 .btn-ghost.pink{color:var(--pink)}
-#cfg-drawer{display:none;padding:1.25rem 2rem;background:var(--bg2);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:1rem}
+
+#cfg-drawer{
+display:none;
+padding:1.25rem 2rem;
+background:var(--bg2);
+border-bottom:1px solid var(--border);
+flex-wrap:wrap;
+gap:1rem;
+}
+
 #cfg-drawer.open{display:flex}
+
 .fg{flex:1;min-width:180px}
-input,textarea{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--mono);padding:.6rem;font-size:.75rem}
-.toolbar{height:48px;padding:0 2rem;display:flex;align-items:center;border-bottom:1px solid var(--border);gap:.75rem}
-.tab{font-family:var(--mono);font-size:.62rem;background:none;border:1px solid var(--border);padding:.35rem .9rem;color:var(--dimmer);cursor:pointer}
+
+input{
+width:100%;
+background:var(--bg3);
+border:1px solid var(--border);
+color:var(--text);
+font-family:var(--mono);
+padding:.6rem;
+font-size:.75rem;
+}
+
+.toolbar{
+height:48px;
+padding:0 2rem;
+display:flex;
+align-items:center;
+border-bottom:1px solid var(--border);
+gap:.75rem;
+}
+
+.tab{
+font-family:var(--mono);
+font-size:.62rem;
+background:none;
+border:1px solid var(--border);
+padding:.35rem .9rem;
+color:var(--dimmer);
+cursor:pointer;
+}
+
 .tab.active{color:var(--text);background:var(--bg3)}
+
 .page{padding:1.75rem 2rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border)}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+gap:1px;
+background:var(--border);
+}
+
 .card{background:var(--bg)}
 .card-body{padding:1rem}
 .card-title{font-size:.82rem}
 .card-artist{font-size:.68rem;color:var(--dim)}
-#login-screen{display:none;position:fixed;inset:0;background:var(--bg);align-items:center;justify-content:center;flex-direction:column}
-#login-screen.show{display:flex}
 </style>
 </head>
 
 <body>
 
-<div id="login-screen">
-<div class="wordmark">osu<em>!</em> goals</div>
-<div id="login-msg"></div>
-</div>
-
 <header>
 <div class="wordmark">osu<em>!</em> goals</div>
+
 <div class="header-right">
-<div class="avatar-wrap">
-<img id="hdr-avatar">
-<span id="hdr-name"></span>
-</div>
 <button class="btn-ghost" onclick="toggleCfg()">config</button>
-<button class="btn-ghost pink" id="auth-btn" onclick="handleAuth()">sign in with osu!</button>
+<button class="btn-ghost pink" onclick="handleAuth()">sign in with osu!</button>
 </div>
 </header>
 
@@ -76,6 +123,7 @@ input,textarea{width:100%;background:var(--bg3);border:1px solid var(--border);c
 <label>osu! Client ID</label>
 <input id="cfg-osu-id" oninput="saveCfg()">
 </div>
+
 <div class="fg">
 <label>Worker URL</label>
 <input id="cfg-worker" oninput="saveCfg()">
@@ -83,8 +131,8 @@ input,textarea{width:100%;background:var(--bg3);border:1px solid var(--border);c
 </div>
 
 <div class="toolbar">
-<button class="tab active" onclick="setTab('g')">Goals</button>
-<button class="tab" onclick="setTab('c')">Completed</button>
+<button class="tab active">Goals</button>
+<button class="tab">Completed</button>
 </div>
 
 <div class="page">
@@ -93,16 +141,13 @@ input,textarea{width:100%;background:var(--bg3);border:1px solid var(--border);c
 
 <script>
 const CFG_KEY='cfg';
-const SESS_KEY='sess';
 
 const cfgId=document.getElementById('cfg-osu-id');
 const cfgWorker=document.getElementById('cfg-worker');
-const grid=document.getElementById('grid');
 
-let session=null;
-let goals=[];
-
-function loadCfg(){return JSON.parse(localStorage.getItem(CFG_KEY)||'{}')}
+function loadCfg(){
+return JSON.parse(localStorage.getItem(CFG_KEY)||'{}')
+}
 
 function saveCfg(){
 localStorage.setItem(CFG_KEY,JSON.stringify({
@@ -117,49 +162,46 @@ cfgId.value=c.osuId||'';
 cfgWorker.value=c.worker||'';
 }
 
-function loadSession(){return JSON.parse(localStorage.getItem(SESS_KEY)||'null')}
-function saveSession(s){session=s;localStorage.setItem(SESS_KEY,JSON.stringify(s))}
-
 function toggleCfg(){
 document.getElementById('cfg-drawer').classList.toggle('open');
 }
 
-async function getOsuTok(){
-const c=loadCfg();
-return fetch(`${c.worker}/osu-token`).then(r=>r.json()).then(d=>d.token)
+/* ✅ FIXED AUTH BUTTON */
+function handleAuth(){
+const cfg=loadCfg();
+
+if(!cfg.osuId){
+alert("Missing osu Client ID");
+toggleCfg();
+return;
 }
 
-function parseId(u){
-return (u.match(/beatmaps\/(\d+)/)||[])[1]
+if(!cfg.worker){
+alert("Missing Worker URL");
+toggleCfg();
+return;
 }
 
-async function fetchMeta(url){
-const id=parseId(url);
-const tok=await getOsuTok();
-const r=await fetch(`https://osu.ppy.sh/api/v2/beatmaps/${id}`,{
-headers:{Authorization:`Bearer ${tok}`}
-});
-return r.json();
+const redirectUri = encodeURIComponent(location.origin + location.pathname);
+
+window.location.href =
+`https://osu.ppy.sh/oauth/authorize` +
+`?client_id=${cfg.osuId}` +
+`&redirect_uri=${redirectUri}` +
+`&response_type=code` +
+`&scope=identify`;
 }
 
 function render(){
-grid.innerHTML=goals.map(g=>`
-<div class="card">
-<div class="card-body">
-<div class="card-title">${g.title||''}</div>
-<div class="card-artist">${g.artist||''}</div>
-</div>
-</div>
-`).join('')
+document.getElementById('grid').innerHTML =
+`<div class="card"><div class="card-body">
+<div class="card-title">Test card</div>
+<div class="card-artist">system working</div>
+</div></div>`;
 }
 
-async function init(){
 applyCfg();
-session=loadSession();
 render();
-}
-
-init();
 </script>
 
 </body>
