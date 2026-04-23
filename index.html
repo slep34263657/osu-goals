@@ -652,7 +652,7 @@ function saveCfg() {
   const c = {
     osuId:     document.getElementById('cfg-osu-id').value.trim(),
     osuSecret: document.getElementById('cfg-osu-secret').value.trim(),
-    worker:    document.getElementById('cfg-worker').value.trim(),
+    worker:    document.getElementById('cfg-worker').value.trim().replace(/\/+$/, ''),
   };
   localStorage.setItem(CFG_KEY, JSON.stringify(c));
 }
@@ -660,7 +660,7 @@ function applyCfg() {
   const c = loadCfg();
   document.getElementById('cfg-osu-id').value    = c.osuId     || '';
   document.getElementById('cfg-osu-secret').value = c.osuSecret || '';
-  document.getElementById('cfg-worker').value     = c.worker    || '';
+  document.getElementById('cfg-worker').value     = (c.worker || '').replace(/\/+$/, '');
 }
 function toggleCfg() {
   document.getElementById('cfg-drawer').classList.toggle('open');
