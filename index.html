@@ -94,10 +94,16 @@ input,textarea{width:100%;background:var(--bg3);border:1px solid var(--border);c
 <script>
 const CFG_KEY='cfg';
 const SESS_KEY='sess';
+
+const cfgId=document.getElementById('cfg-osu-id');
+const cfgWorker=document.getElementById('cfg-worker');
+const grid=document.getElementById('grid');
+
 let session=null;
 let goals=[];
 
 function loadCfg(){return JSON.parse(localStorage.getItem(CFG_KEY)||'{}')}
+
 function saveCfg(){
 localStorage.setItem(CFG_KEY,JSON.stringify({
 osuId:cfgId.value.trim(),
@@ -114,7 +120,9 @@ cfgWorker.value=c.worker||'';
 function loadSession(){return JSON.parse(localStorage.getItem(SESS_KEY)||'null')}
 function saveSession(s){session=s;localStorage.setItem(SESS_KEY,JSON.stringify(s))}
 
-function toggleCfg(){cfg.classList.toggle('open')}
+function toggleCfg(){
+document.getElementById('cfg-drawer').classList.toggle('open');
+}
 
 async function getOsuTok(){
 const c=loadCfg();
@@ -134,14 +142,21 @@ headers:{Authorization:`Bearer ${tok}`}
 return r.json();
 }
 
+function render(){
+grid.innerHTML=goals.map(g=>`
+<div class="card">
+<div class="card-body">
+<div class="card-title">${g.title||''}</div>
+<div class="card-artist">${g.artist||''}</div>
+</div>
+</div>
+`).join('')
+}
+
 async function init(){
 applyCfg();
 session=loadSession();
 render();
-}
-
-function render(){
-grid.innerHTML=goals.map(g=>`<div class="card"><div class="card-body"><div class="card-title">${g.title||''}</div><div class="card-artist">${g.artist||''}</div></div></div>`).join('')
 }
 
 init();
