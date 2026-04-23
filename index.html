@@ -6,537 +6,35 @@
 <title>osu! score goals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --bg:          #181818;
-  --bg2:         #202020;
-  --bg3:         #282828;
-  --border:      #2e2e2e;
-  --border2:     #383838;
-  --text:        #e4e4e4;
-  --dim:         #808080;
-  --dimmer:      #484848;
-  --pink:        #ff6b9d;
-  --pink-bg:     rgba(255,107,157,0.1);
-  --green:       #6bdb8f;
-  --red:         #e05c5c;
-  --mono:        'DM Mono', monospace;
-  --sans:        'DM Sans', sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  font-weight: 300;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── HEADER ─────────────────────────────────────────────────────────── */
-header {
-  height: 56px;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--bg);
-}
-.wordmark {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-.wordmark em { font-style: normal; color: var(--pink); }
-
-.header-right { display: flex; align-items: center; gap: 0.75rem; }
-
-.avatar-wrap {
-  display: none;
-  align-items: center;
-  gap: 0.6rem;
-}
-body.authed .avatar-wrap { display: flex; }
-.avatar-wrap img {
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border2);
-}
-.avatar-name {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--dim);
-}
-
-.btn-ghost {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: none;
-  border: 1px solid var(--border2);
-  color: var(--dim);
-  padding: 0.4rem 0.85rem;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
-  white-space: nowrap;
-}
-.btn-ghost:hover { border-color: var(--dim); color: var(--text); }
-.btn-ghost.pink { border-color: color-mix(in srgb, var(--pink) 40%, transparent); color: var(--pink); }
-.btn-ghost.pink:hover { border-color: var(--pink); }
-
-/* ── CONFIG DRAWER ──────────────────────────────────────────────────── */
-#cfg-drawer {
-  display: none;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg2);
-  padding: 1.25rem 2rem;
-  gap: 0.75rem 1.25rem;
-  flex-wrap: wrap;
-  align-items: flex-end;
-}
-#cfg-drawer.open { display: flex; }
-#cfg-drawer .fg { flex: 1; min-width: 180px; }
-.cfg-note {
-  width: 100%;
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  color: var(--dimmer);
-  line-height: 1.7;
-  padding-top: 0.25rem;
-  border-top: 1px solid var(--border);
-}
-
-/* ── TOOLBAR ────────────────────────────────────────────────────────── */
-.toolbar {
-  height: 48px;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  border-bottom: 1px solid var(--border);
-}
-.tab-row { display: flex; }
-.tab {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: none;
-  border: 1px solid var(--border);
-  border-right: none;
-  color: var(--dimmer);
-  padding: 0.35rem 0.9rem;
-  cursor: pointer;
-  transition: all 0.12s;
-}
-.tab:last-child { border-right: 1px solid var(--border); }
-.tab.active { background: var(--bg3); color: var(--text); border-color: var(--border2); }
-.tab:hover:not(.active) { color: var(--dim); }
-
-.toolbar-gap { flex: 1; }
-.stat-pill {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: var(--dimmer);
-}
-.stat-pill b { color: var(--dim); font-weight: 400; }
-
-.add-btns { display: none; gap: 0.5rem; }
-body.authed .add-btns { display: flex; }
-
-/* ── GRID ───────────────────────────────────────────────────────────── */
-.page { padding: 1.75rem 2rem 4rem; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px;
-  background: var(--border);
-}
-.sec-head {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--dimmer);
-  padding-bottom: 1rem;
-  margin-bottom: 0;
-}
-#completed-wrap { margin-top: 2.5rem; }
-
-/* ── CARD ───────────────────────────────────────────────────────────── */
-.card {
-  background: var(--bg);
-  position: relative;
-  overflow: hidden;
-  transition: background 0.12s;
-}
-.card:hover { background: var(--bg2); }
-.card-bg {
-  position: absolute; inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.1;
-  transition: opacity 0.2s;
-}
-.card:hover .card-bg { opacity: 0.16; }
-
-.card-body {
-  position: relative;
-  padding: 1.1rem 1.1rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  min-height: 148px;
-}
-
-.card-row1 { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
-.card-titles { flex: 1; min-width: 0; }
-.card-title {
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: var(--text);
-  line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.card-artist {
-  font-size: 0.68rem;
-  color: var(--dim);
-  margin-top: 0.15rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.imp {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  border: 1px solid var(--border2);
-  color: var(--dimmer);
-  padding: 0.15rem 0.4rem;
-  flex-shrink: 0;
-  line-height: 1.4;
-  transition: all 0.12s;
-}
-.imp.hi { border-color: rgba(255,107,157,0.5); color: var(--pink); }
-.imp.md { border-color: var(--border2); color: var(--dim); }
-
-.card-diff {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--dim);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.stars { color: var(--dimmer); }
-.stars b { color: #f5c518; font-weight: 400; }
-
-.chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.25rem; }
-.chip {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.03em;
-  padding: 0.25rem 0.55rem;
-  border: 1px solid var(--border2);
-  color: var(--dim);
-  background: rgba(255,255,255,0.015);
-  white-space: nowrap;
-}
-.chip.done { border-color: rgba(107,219,143,0.4); color: var(--green); background: rgba(107,219,143,0.07); }
-.chip.empty { color: var(--dimmer); border-color: var(--border); font-style: italic; }
-
-.card-note {
-  font-size: 0.67rem;
-  color: var(--dimmer);
-  font-style: italic;
-  line-height: 1.4;
-}
-
-/* card edit/delete — only visible when authed + hovering */
-.card-tools {
-  display: none;
-  position: absolute;
-  top: 0.6rem; right: 0.6rem;
-  gap: 0.25rem;
-}
-body.authed .card:hover .card-tools { display: flex; }
-.card-tool {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  color: var(--dim);
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-  transition: all 0.12s;
-}
-.card-tool:hover { color: var(--text); border-color: var(--dim); }
-.card-tool.x:hover { color: var(--red); border-color: var(--red); }
-
-.empty {
-  grid-column: 1/-1;
-  padding: 3.5rem 1rem;
-  text-align: center;
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--dimmer);
-  letter-spacing: 0.08em;
-}
-
-/* ── MODAL ──────────────────────────────────────────────────────────── */
-.overlay {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-.overlay.open { display: flex; }
-.modal {
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  width: 100%;
-  max-width: 500px;
-  max-height: 92vh;
-  overflow-y: auto;
-  padding: 1.75rem;
-  position: relative;
-}
-.modal-hd {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 1.5rem;
-}
-.x-btn {
-  position: absolute;
-  top: 1.1rem; right: 1.1rem;
-  background: none; border: none;
-  color: var(--dimmer); font-size: 0.9rem;
-  cursor: pointer; font-family: var(--mono);
-  transition: color 0.12s;
-}
-.x-btn:hover { color: var(--text); }
-
-/* form */
-.fg { margin-bottom: 1.1rem; }
-.fg:last-of-type { margin-bottom: 0; }
-label {
-  display: block;
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dimmer);
-  margin-bottom: 0.45rem;
-}
-label .opt { color: var(--dimmer); opacity: 0.6; font-size: 0.52rem; letter-spacing: 0; text-transform: none; }
-input[type=text], input[type=password], textarea, select {
-  width: 100%;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  padding: 0.6rem 0.7rem;
-  outline: none;
-  transition: border-color 0.12s;
-  appearance: none;
-}
-input:focus, textarea:focus { border-color: var(--border2); }
-input:disabled { opacity: 0.45; }
-textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
-.three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; }
-
-.imp-row { display: flex; align-items: center; gap: 0.85rem; }
-.imp-row input[type=range] {
-  flex: 1; padding: 0; background: none; border: none;
-  cursor: pointer; accent-color: var(--pink);
-}
-.imp-val { font-family: var(--mono); font-size: 0.82rem; color: var(--text); width: 1.2rem; text-align: center; }
-
-.preview-box {
-  display: none;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  padding: 0.75rem;
-  margin-top: 0.6rem;
-  gap: 0.7rem;
-  align-items: center;
-}
-.preview-box.show { display: flex; }
-.preview-box img { width: 68px; height: 44px; object-fit: cover; flex-shrink: 0; }
-.preview-info .pt { font-size: 0.75rem; color: var(--text); }
-.preview-info .ps { font-family: var(--mono); font-size: 0.63rem; color: var(--dim); margin-top: 0.2rem; }
-
-.fetch-msg {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  color: var(--dimmer);
-  margin-top: 0.35rem;
-  min-height: 1em;
-}
-.fetch-msg.ok { color: var(--green); }
-.fetch-msg.err { color: var(--red); }
-
-.check-row { display: flex; align-items: center; gap: 0.6rem; }
-.check-row input[type=checkbox] { width: 13px; height: 13px; accent-color: var(--pink); cursor: pointer; }
-.check-row label { margin: 0; cursor: pointer; }
-
-.modal-foot { display: flex; gap: 0.6rem; margin-top: 1.5rem; }
-.btn-fill {
-  flex: 1;
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: var(--text);
-  border: 1px solid var(--text);
-  color: var(--bg);
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  transition: background 0.12s, border-color 0.12s;
-}
-.btn-fill:hover { background: var(--pink); border-color: var(--pink); }
-.btn-fill:disabled { opacity: 0.35; cursor: not-allowed; }
-
-.bulk-hint {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  color: var(--dimmer);
-  line-height: 1.65;
-  margin-bottom: 1rem;
-}
-
-/* ── SPINNER ────────────────────────────────────────────────────────── */
-@keyframes spin { to { transform: rotate(360deg); } }
-.sp {
-  display: inline-block;
-  width: 9px; height: 9px;
-  border: 1px solid var(--border2);
-  border-top-color: var(--dim);
-  border-radius: 50%;
-  animation: spin 0.55s linear infinite;
-  vertical-align: middle;
-  margin-right: 0.3rem;
-}
-
-/* ── TOAST ──────────────────────────────────────────────────────────── */
-#toast {
-  position: fixed;
-  bottom: 1.75rem; right: 1.75rem;
-  background: var(--bg3);
-  border: 1px solid var(--border2);
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
-  color: var(--dim);
-  padding: 0.65rem 1rem;
-  z-index: 999;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: all 0.18s;
-  pointer-events: none;
-  max-width: 280px;
-}
-#toast.show { opacity: 1; transform: translateY(0); }
-#toast.ok  { border-color: rgba(107,219,143,0.5); color: var(--green); }
-#toast.err { border-color: rgba(224,92,92,0.5);   color: var(--red);   }
-
-/* ── LOGIN SCREEN ───────────────────────────────────────────────────── */
-#login-screen {
-  display: none;
-  position: fixed; inset: 0;
-  background: var(--bg);
-  z-index: 300;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-}
-#login-screen.show { display: flex; }
-.login-word {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--dimmer);
-  margin-bottom: 1.5rem;
-}
-.login-word em { font-style: normal; color: var(--pink); }
-.login-msg {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--dim);
-  text-align: center;
-  max-width: 280px;
-  line-height: 1.6;
-}
-
-@media (max-width: 600px) {
-  header, .toolbar, .page { padding-left: 1rem; padding-right: 1rem; }
-  #cfg-drawer { padding-left: 1rem; padding-right: 1rem; }
-  .three { grid-template-columns: 1fr 1fr; }
-}
 </style>
 </head>
+
 <body>
 
-<!-- ── LOGIN SCREEN ──────────────────────────────────────────────────────── -->
-<div id="login-screen">
-  <div class="login-word">osu<em>!</em> goals</div>
-  <p class="login-msg" id="login-msg">checking session...</p>
-</div>
-
-<!-- ── HEADER ────────────────────────────────────────────────────────────── -->
 <header>
   <div class="wordmark">osu<em>!</em> goals</div>
   <div class="header-right">
     <div class="avatar-wrap">
-      <img id="hdr-avatar" src="" alt="">
+      <img id="hdr-avatar">
       <span class="avatar-name" id="hdr-name"></span>
     </div>
-    <button class="btn-ghost" id="cfg-toggle-btn" onclick="toggleCfg()">config</button>
+    <button class="btn-ghost" onclick="toggleCfg()">config</button>
     <button class="btn-ghost pink" id="auth-btn" onclick="handleAuth()">sign in with osu!</button>
   </div>
 </header>
 
-<!-- ── CONFIG DRAWER ─────────────────────────────────────────────────────── -->
+<!-- CONFIG () -->
 <div id="cfg-drawer">
   <div class="fg">
-    <label>osu! Client ID</label>
-    <input id="cfg-osu-id" type="text" placeholder="from osu! account settings" oninput="saveCfg()">
-  </div>
-  <div class="fg">
-    <label>osu! Client Secret</label>
-    <input id="cfg-osu-secret" type="password" placeholder="from osu! account settings" oninput="saveCfg()">
-  </div>
-  <div class="fg">
-    <label>Cloudflare Worker URL</label>
-    <input id="cfg-worker" type="text" placeholder="https://your-worker.workers.dev" oninput="saveCfg()">
+    <label>CF URL</label>
+    <input id="cfg-worker" type="text" placeholder="-------" oninput="saveCfg()">
   </div>
   <div class="cfg-note">
-    Config is saved in your browser (localStorage). Worker URL is used for osu! OAuth and GitHub writes. See SETUP.md for full instructions. Your osu! credentials are only used client-side to fetch map metadata for display.
   </div>
 </div>
 
-<!-- ── TOOLBAR ────────────────────────────────────────────────────────────── -->
 <div class="toolbar">
   <div class="tab-row">
     <button class="tab active" id="tab-g" onclick="setTab('g')">Goals</button>
@@ -544,13 +42,8 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
   </div>
   <div class="toolbar-gap"></div>
   <span class="stat-pill" id="stat-pill"></span>
-  <div class="add-btns">
-    <button class="btn-ghost" onclick="openAdd()">+ add map</button>
-    <button class="btn-ghost" onclick="openBulk()">+ bulk add</button>
-  </div>
 </div>
 
-<!-- ── MAIN ───────────────────────────────────────────────────────────────── -->
 <div class="page">
   <div class="grid" id="g-grid"></div>
   <div id="completed-wrap" style="display:none">
@@ -559,566 +52,154 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
   </div>
 </div>
 
-<!-- ── ADD / EDIT MODAL ───────────────────────────────────────────────────── -->
+<!-- ADD MODAL -->
 <div class="overlay" id="add-overlay">
   <div class="modal">
     <button class="x-btn" onclick="closeOverlay('add-overlay')">✕</button>
-    <div class="modal-hd" id="add-hd">add map goal</div>
+
+    <div class="modal-hd">add map goal</div>
 
     <div class="fg">
       <label>Beatmap URL</label>
-      <input id="f-url" type="text" placeholder="https://osu.ppy.sh/beatmapsets/…#osu/…" oninput="onUrlInput(this.value)">
+      <input id="f-url" oninput="onUrlInput(this.value)">
       <div class="fetch-msg" id="f-status"></div>
     </div>
 
-    <div class="preview-box" id="f-preview">
-      <img id="f-prev-img" src="" alt="">
-      <div class="preview-info">
-        <div class="pt" id="f-prev-title"></div>
-        <div class="ps" id="f-prev-sub"></div>
-      </div>
-    </div>
-
-    <div class="three" style="margin-top:1.1rem">
-      <div class="fg">
-        <label>Target ACC <span class="opt">(optional)</span></label>
-        <input id="f-acc" type="text" placeholder="99.5%">
-      </div>
-      <div class="fg">
-        <label>Grade <span class="opt">(optional)</span></label>
-        <input id="f-grade" type="text" placeholder="SS">
-      </div>
-      <div class="fg">
-        <label>Target PP <span class="opt">(optional)</span></label>
-        <input id="f-pp" type="text" placeholder="420pp">
-      </div>
+    <div class="three">
+      <div class="fg"><label>ACC</label><input id="f-acc"></div>
+      <div class="fg"><label>GRADE</label><input id="f-grade"></div>
+      <div class="fg"><label>PP</label><input id="f-pp"></div>
     </div>
 
     <div class="fg">
-      <label>Importance (1–10)</label>
-      <div class="imp-row">
-        <input type="range" id="f-imp" min="1" max="10" value="5"
-               oninput="document.getElementById('f-imp-val').textContent=this.value">
-        <span class="imp-val" id="f-imp-val">5</span>
-      </div>
-    </div>
-
-    <div class="fg">
-      <label>Notes <span class="opt">(optional)</span></label>
-      <input id="f-notes" type="text" placeholder="e.g. need better approach rate">
-    </div>
-
-    <div class="check-row">
-      <input type="checkbox" id="f-done">
-      <label for="f-done">mark as achieved / completed</label>
+      <label>Importance</label>
+      <input type="range" id="f-imp" min="1" max="10" value="5">
     </div>
 
     <div class="modal-foot">
       <button class="btn-ghost" onclick="closeOverlay('add-overlay')">cancel</button>
-      <button class="btn-fill" id="f-save-btn" onclick="saveGoal()">save goal</button>
+      <button class="btn-fill" onclick="saveGoal()">save</button>
     </div>
   </div>
 </div>
-
-<!-- ── BULK MODAL ────────────────────────────────────────────────────────── -->
-<div class="overlay" id="bulk-overlay">
-  <div class="modal">
-    <button class="x-btn" onclick="closeOverlay('bulk-overlay')">✕</button>
-    <div class="modal-hd">bulk add maps</div>
-    <p class="bulk-hint">One osu! beatmap URL per line. Metadata is fetched automatically.<br>Duplicates are skipped.</p>
-    <div class="fg">
-      <label>URLs (one per line)</label>
-      <textarea id="bulk-ta" placeholder="https://osu.ppy.sh/beatmapsets/123456#osu/789012&#10;https://osu.ppy.sh/beatmapsets/..."></textarea>
-    </div>
-    <div class="fetch-msg" id="bulk-status"></div>
-    <div class="modal-foot">
-      <button class="btn-ghost" onclick="closeOverlay('bulk-overlay')">cancel</button>
-      <button class="btn-fill" id="bulk-btn" onclick="doBulk()">import</button>
-    </div>
-  </div>
-</div>
-
-<div id="toast"></div>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────────────────────────────
-const CFG_KEY  = 'osugoals_cfg';
-const SESS_KEY = 'osugoals_sess';
+
+// ── CONFIG ──
+const CFG_KEY = "cfg";
+const SESS_KEY = "sess";
 
 function loadCfg() {
-  try { return JSON.parse(localStorage.getItem(CFG_KEY)) || {}; } catch { return {}; }
+  return JSON.parse(localStorage.getItem(CFG_KEY) || "{}");
 }
 function saveCfg() {
-  const c = {
-    osuId:     document.getElementById('cfg-osu-id').value.trim(),
-    osuSecret: document.getElementById('cfg-osu-secret').value.trim(),
-    worker:    document.getElementById('cfg-worker').value.trim().replace(/\/+$/, ''),
-  };
-  localStorage.setItem(CFG_KEY, JSON.stringify(c));
+  localStorage.setItem(CFG_KEY, JSON.stringify({
+    worker: document.getElementById("cfg-worker").value.trim().replace(/\/+$/, "")
+  }));
 }
 function applyCfg() {
   const c = loadCfg();
-  document.getElementById('cfg-osu-id').value    = c.osuId     || '';
-  document.getElementById('cfg-osu-secret').value = c.osuSecret || '';
-  document.getElementById('cfg-worker').value     = (c.worker || '').replace(/\/+$/, '');
+  document.getElementById("cfg-worker").value = c.worker || "";
+}
+function worker() {
+  return loadCfg().worker;
 }
 function toggleCfg() {
-  document.getElementById('cfg-drawer').classList.toggle('open');
+  document.getElementById("cfg-drawer").classList.toggle("open");
 }
 
-// ── SESSION ───────────────────────────────────────────────────────────────────
-let session = null; // { token, user: { id, username, avatar_url } }
-
-function loadSession() {
-  try { return JSON.parse(localStorage.getItem(SESS_KEY)); } catch { return null; }
-}
-function saveSession(s) {
-  session = s;
-  localStorage.setItem(SESS_KEY, JSON.stringify(s));
-}
-function clearSession() {
-  session = null;
-  localStorage.removeItem(SESS_KEY);
-}
-
-function applyAuthUI() {
-  const authed = !!session;
-  document.body.classList.toggle('authed', authed);
-  const btn = document.getElementById('auth-btn');
-  if (authed) {
-    btn.textContent = 'sign out';
-    btn.classList.remove('pink');
-    document.getElementById('hdr-avatar').src = session.user.avatar_url;
-    document.getElementById('hdr-name').textContent = session.user.username;
-  } else {
-    btn.textContent = 'sign in with osu!';
-    btn.classList.add('pink');
-  }
-}
-
+// ── OSU AUTH  ──
 function handleAuth() {
-  if (session) {
-    clearSession();
-    applyAuthUI();
-    toast('signed out');
-  } else {
-    const cfg = loadCfg();
-    if (!cfg.osuId) {
-      toast('set your osu! client id in config first', 'err');
-      document.getElementById('cfg-drawer').classList.add('open');
-      return;
-    }
-    const cfg2 = loadCfg();
-    if (!cfg2.worker) {
-      toast('set your worker url in config first', 'err');
-      document.getElementById('cfg-drawer').classList.add('open');
-      return;
-    }
-    // osu OAuth PKCE-less — redirect to osu auth
-    const redirectUri = encodeURIComponent(location.origin + location.pathname.replace(/\/$/, '') + '/');
-    location.href = `https://osu.ppy.sh/oauth/authorize?client_id=${cfg.osuId}&redirect_uri=${redirectUri}&response_type=code&scope=identify`;
-  }
+  const w = worker();
+  if (!w) return alert("set worker first");
+  location.href = `${w}/login`;
 }
 
-async function exchangeCode(code) {
-  const cfg = loadCfg();
-  if (!cfg.worker) { toast('worker url not set', 'err'); return false; }
-  try {
-    const r = await fetch(`${cfg.worker}/exchange?code=${encodeURIComponent(code)}`);
-    const d = await r.json();
-    if (d.ok && d.sessionToken) {
-      saveSession({ token: d.sessionToken, user: d.user });
-      return true;
-    } else {
-      const msg = d.message || d.error || 'auth failed';
-      toast(msg, 'err');
-      setLoginMsg(msg);
-      return false;
-    }
-  } catch(e) {
-    toast('worker request failed', 'err');
-    return false;
-  }
-}
-
-// ── DATA ──────────────────────────────────────────────────────────────────────
-let goals = [];
-let goalsSha = null;
-
-async function fetchGoals() {
-  const cfg = loadCfg();
-  if (!cfg.worker) {
-    // fallback localStorage
-    try { goals = JSON.parse(localStorage.getItem('osugoals_data') || '[]'); } catch { goals = []; }
-    return;
-  }
-  try {
-    const r = await fetch(`${cfg.worker}/goals`);
-    if (r.ok) {
-      const d = await r.json();
-      goals    = d.goals || [];
-      goalsSha = d.sha || null;
-    }
-  } catch {
-    try { goals = JSON.parse(localStorage.getItem('osugoals_data') || '[]'); } catch { goals = []; }
-  }
-}
-
-async function persistGoals() {
-  localStorage.setItem('osugoals_data', JSON.stringify(goals));
-  const cfg = loadCfg();
-  if (!cfg.worker || !session) return;
-  try {
-    const r = await fetch(`${cfg.worker}/goals`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.token}`,
-      },
-      body: JSON.stringify({ goals, sha: goalsSha }),
-    });
-    if (r.ok) {
-      const d = await r.json();
-      if (d.sha) goalsSha = d.sha;
-      toast('saved', 'ok');
-    } else {
-      const d = await r.json().catch(() => ({}));
-      toast(d.error || 'save failed', 'err');
-    }
-  } catch {
-    toast('network error', 'err');
-  }
-}
-
-// ── OSU API (map metadata) ────────────────────────────────────────────────────
-let osuTok = null;
-let osuTokExp = 0;
-
-async function getOsuTok() {
-  if (osuTok && Date.now() < osuTokExp) return osuTok;
-  const cfg = loadCfg();
-  if (!cfg.osuId || !cfg.osuSecret) return null;
-  try {
-    const r = await fetch('https://osu.ppy.sh/oauth/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ client_id: cfg.osuId, client_secret: cfg.osuSecret, grant_type: 'client_credentials', scope: 'public' }),
-    });
-    const d = await r.json();
-    if (d.access_token) {
-      osuTok = d.access_token;
-      osuTokExp = Date.now() + (d.expires_in - 60) * 1000;
-      return osuTok;
-    }
-  } catch {}
-  return null;
-}
-
+// ── MAP FETCH  ──
 function parseBmId(url) {
-  const m1 = url.match(/beatmapsets\/\d+#\w+\/(\d+)/);
-  if (m1) return m1[1];
-  const m2 = url.match(/beatmaps\/(\d+)/);
-  if (m2) return m2[1];
-  const m3 = url.match(/[?&]b=(\d+)/);
-  if (m3) return m3[1];
-  return null;
+  return (url.match(/beatmapsets\/\d+#\w+\/(\d+)/)?.[1])
+      || (url.match(/beatmaps\/(\d+)/)?.[1])
+      || (url.match(/[?&]b=(\d+)/)?.[1]);
 }
 
 async function fetchMeta(url) {
   const id = parseBmId(url);
   if (!id) return null;
-  const tok = await getOsuTok();
-  if (!tok) return { id, title: `map #${id}`, artist: '', diff: '', stars: null, cover: null, url };
+
+  const w = worker();
+  if (!w) return null;
+
   try {
-    const r = await fetch(`https://osu.ppy.sh/api/v2/beatmaps/${id}`, {
-      headers: { Authorization: `Bearer ${tok}`, Accept: 'application/json' },
-    });
+    const r = await fetch(`${w}/beatmap?id=${id}`);
     if (!r.ok) return null;
-    const d = await r.json();
-    return {
-      id,
-      title:  d.beatmapset?.title  || '',
-      artist: d.beatmapset?.artist || '',
-      diff:   d.version            || '',
-      stars:  d.difficulty_rating  ? parseFloat(d.difficulty_rating).toFixed(2) : null,
-      cover:  d.beatmapset?.covers?.cover || d.beatmapset?.covers?.list || null,
-      url,
-    };
-  } catch { return null; }
-}
-
-// ── URL INPUT ─────────────────────────────────────────────────────────────────
-let urlTimer = null;
-let pendingMeta = null;
-
-function onUrlInput(val) {
-  clearTimeout(urlTimer);
-  setFetchMsg('');
-  document.getElementById('f-preview').classList.remove('show');
-  pendingMeta = null;
-  if (!val.trim()) return;
-  setFetchMsg('<span class="sp"></span>fetching…');
-  urlTimer = setTimeout(async () => {
-    const meta = await fetchMeta(val.trim());
-    if (!meta) {
-      setFetchMsg('could not fetch map — check url or osu api config', 'err');
-    } else {
-      pendingMeta = meta;
-      setFetchMsg('✓ ' + meta.title, 'ok');
-      document.getElementById('f-prev-title').textContent = meta.title + (meta.diff ? ' [' + meta.diff + ']' : '');
-      document.getElementById('f-prev-sub').textContent   = meta.artist + (meta.stars ? '  ·  ★' + meta.stars : '');
-      if (meta.cover) {
-        document.getElementById('f-prev-img').src = meta.cover;
-        document.getElementById('f-preview').classList.add('show');
-      }
-    }
-  }, 550);
-}
-function setFetchMsg(html, cls = '') {
-  const el = document.getElementById('f-status');
-  el.innerHTML = html;
-  el.className = 'fetch-msg' + (cls ? ' ' + cls : '');
-}
-
-// ── MODAL HELPERS ─────────────────────────────────────────────────────────────
-let editId = null;
-
-function openAdd() {
-  editId = null; pendingMeta = null;
-  document.getElementById('add-hd').textContent = 'add map goal';
-  document.getElementById('f-url').value = '';
-  document.getElementById('f-url').disabled = false;
-  document.getElementById('f-status').textContent = '';
-  document.getElementById('f-preview').classList.remove('show');
-  document.getElementById('f-acc').value   = '';
-  document.getElementById('f-grade').value = '';
-  document.getElementById('f-pp').value    = '';
-  document.getElementById('f-imp').value   = 5;
-  document.getElementById('f-imp-val').textContent = '5';
-  document.getElementById('f-notes').value = '';
-  document.getElementById('f-done').checked = false;
-  document.getElementById('add-overlay').classList.add('open');
-}
-
-function openEdit(id) {
-  const g = goals.find(x => x.id === id);
-  if (!g) return;
-  editId = id;
-  pendingMeta = { title: g.title, artist: g.artist, diff: g.diff, stars: g.stars, cover: g.cover, url: g.url };
-  document.getElementById('add-hd').textContent = 'edit goal';
-  document.getElementById('f-url').value = g.url;
-  document.getElementById('f-url').disabled = true;
-  setFetchMsg('✓ ' + g.title, 'ok');
-  if (g.cover) {
-    document.getElementById('f-prev-img').src     = g.cover;
-    document.getElementById('f-prev-title').textContent = g.title + (g.diff ? ' [' + g.diff + ']' : '');
-    document.getElementById('f-prev-sub').textContent   = g.artist + (g.stars ? '  ·  ★' + g.stars : '');
-    document.getElementById('f-preview').classList.add('show');
-  } else {
-    document.getElementById('f-preview').classList.remove('show');
+    return await r.json();
+  } catch {
+    return null;
   }
-  document.getElementById('f-acc').value   = g.goalAcc   || '';
-  document.getElementById('f-grade').value = g.goalGrade || '';
-  document.getElementById('f-pp').value    = g.goalPp    || '';
-  document.getElementById('f-imp').value   = g.importance || 5;
-  document.getElementById('f-imp-val').textContent = g.importance || 5;
-  document.getElementById('f-notes').value = g.notes || '';
-  document.getElementById('f-done').checked = !!g.achieved;
-  document.getElementById('add-overlay').classList.add('open');
 }
 
-function closeOverlay(id) { document.getElementById(id).classList.remove('open'); }
+// ── INPUT ──
+let timer;
+let pendingMeta;
+
+function onUrlInput(v) {
+  clearTimeout(timer);
+  if (!v.trim()) return;
+
+  setStatus("loading...");
+  timer = setTimeout(async () => {
+    const meta = await fetchMeta(v);
+    if (!meta) return setStatus("failed to fetch", true);
+
+    pendingMeta = meta;
+    setStatus(meta.title, false, true);
+  }, 400);
+}
+
+function setStatus(msg, err=false, ok=false) {
+  const el = document.getElementById("f-status");
+  el.textContent = msg;
+  el.style.color = err ? "#e05c5c" : ok ? "#6bdb8f" : "#808080";
+}
+
+// ── GOALS ──
+let goals = [];
 
 async function saveGoal() {
-  const btn = document.getElementById('f-save-btn');
-  btn.disabled = true; btn.textContent = 'saving…';
+  const url = document.getElementById("f-url").value;
 
-  const url   = document.getElementById('f-url').value.trim();
-  const acc   = document.getElementById('f-acc').value.trim();
-  const grade = document.getElementById('f-grade').value.trim();
-  const pp    = document.getElementById('f-pp').value.trim();
-  const imp   = parseInt(document.getElementById('f-imp').value);
-  const notes = document.getElementById('f-notes').value.trim();
-  const done  = document.getElementById('f-done').checked;
-
-  if (!editId && !url) { toast('enter a map url', 'err'); btn.disabled = false; btn.textContent = 'save goal'; return; }
-
-  if (editId) {
-    const idx = goals.findIndex(x => x.id === editId);
-    if (idx !== -1) goals[idx] = { ...goals[idx], goalAcc: acc, goalGrade: grade, goalPp: pp, importance: imp, notes, achieved: done };
-  } else {
-    if (goals.find(g => g.url === url)) { toast('map already in list', 'err'); btn.disabled = false; btn.textContent = 'save goal'; return; }
-    let meta = pendingMeta;
-    if (!meta) meta = await fetchMeta(url) || { title: url, artist: '', diff: '', stars: null, cover: null, url };
+  if (pendingMeta) {
     goals.push({
-      id: 'g' + Date.now(),
-      url, ...meta,
-      goalAcc: acc, goalGrade: grade, goalPp: pp,
-      importance: imp, notes, achieved: done,
-      addedAt: Date.now(),
+      id: Date.now(),
+      url,
+      ...pendingMeta,
+      importance: +document.getElementById("f-imp").value
     });
   }
 
-  await persistGoals();
+  localStorage.setItem("goals", JSON.stringify(goals));
   render();
-  closeOverlay('add-overlay');
-  btn.disabled = false; btn.textContent = 'save goal';
+  closeOverlay("add-overlay");
 }
 
-function delGoal(id) {
-  if (!confirm('remove this goal?')) return;
-  goals = goals.filter(g => g.id !== id);
-  persistGoals();
-  render();
-}
-
-async function doBulk() {
-  const urls = document.getElementById('bulk-ta').value
-    .split('\n').map(u => u.trim()).filter(Boolean);
-  if (!urls.length) return;
-
-  const btn = document.getElementById('bulk-btn');
-  const st  = document.getElementById('bulk-status');
-  btn.disabled = true;
-  let added = 0, skipped = 0;
-
-  for (let i = 0; i < urls.length; i++) {
-    const u = urls[i];
-    st.innerHTML = `<span class="sp"></span>fetching ${i + 1} / ${urls.length}`;
-    st.className = 'fetch-msg';
-    if (goals.find(g => g.url === u)) { skipped++; continue; }
-    const meta = await fetchMeta(u) || { title: u, artist: '', diff: '', stars: null, cover: null, url: u };
-    goals.push({ id: 'g' + Date.now() + Math.random().toString(36).slice(2), url: u, ...meta, goalAcc: '', goalGrade: '', goalPp: '', importance: 5, achieved: false, addedAt: Date.now() });
-    added++;
-    await new Promise(r => setTimeout(r, 200));
-  }
-
-  await persistGoals();
-  render();
-  closeOverlay('bulk-overlay');
-  toast(`added ${added}${skipped ? ', skipped ' + skipped + ' duplicates' : ''}`, 'ok');
-  btn.disabled = false;
-  document.getElementById('bulk-ta').value = '';
-}
-
-// ── RENDER ────────────────────────────────────────────────────────────────────
-let tab = 'g';
-function setTab(t) {
-  tab = t;
-  document.getElementById('tab-g').classList.toggle('active', t === 'g');
-  document.getElementById('tab-c').classList.toggle('active', t === 'c');
-  render();
-}
-
+// ── RENDER ──
 function render() {
-  const active = goals.filter(g => !g.achieved).sort((a,b) => (b.importance||5)-(a.importance||5));
-  const done   = goals.filter(g =>  g.achieved).sort((a,b) => (b.importance||5)-(a.importance||5));
-
-  document.getElementById('stat-pill').innerHTML =
-    `<b>${active.length}</b> goals · <b>${done.length}</b> done`;
-
-  document.getElementById('g-grid').style.display        = tab === 'g' ? '' : 'none';
-  document.getElementById('completed-wrap').style.display = tab === 'c' ? '' : 'none';
-
-  document.getElementById('g-grid').innerHTML =
-    active.length ? active.map(card).join('') : `<div class="empty">no goals yet</div>`;
-  document.getElementById('c-grid').innerHTML =
-    done.length ? done.map(card).join('') : `<div class="empty">nothing completed yet</div>`;
-}
-
-function card(g) {
-  const imp = g.importance || 5;
-  const ic  = imp >= 8 ? 'hi' : imp >= 5 ? 'md' : '';
-  const chips = [];
-  if (g.goalAcc)   chips.push(`<span class="chip${g.achieved?' done':''}">ACC ${esc(g.goalAcc)}</span>`);
-  if (g.goalGrade) chips.push(`<span class="chip${g.achieved?' done':''}">GRADE ${esc(g.goalGrade)}</span>`);
-  if (g.goalPp)    chips.push(`<span class="chip${g.achieved?' done':''}">PP ${esc(g.goalPp)}</span>`);
-  if (!chips.length) chips.push(`<span class="chip empty">no targets set</span>`);
-  return `<div class="card">
-    ${g.cover ? `<div class="card-bg" style="background-image:url('${g.cover}')"></div>` : ''}
-    <div class="card-body">
-      <div class="card-row1">
-        <div class="card-titles">
-          <div class="card-title">${esc(g.title)}</div>
-          ${g.artist ? `<div class="card-artist">${esc(g.artist)}</div>` : ''}
-        </div>
-        <span class="imp ${ic}">${imp}</span>
+  const g = document.getElementById("g-grid");
+  g.innerHTML = goals.map(x =>
+    `<div class="card">
+      <div class="card-body">
+        <div class="card-title">${x.title}</div>
+        <div class="card-artist">${x.artist || ""}</div>
       </div>
-      ${(g.diff||g.stars) ? `<div class="card-diff">${g.diff ? `<span>${esc(g.diff)}</span>` : ''}${g.stars ? `<span class="stars"><b>★</b> ${g.stars}</span>` : ''}</div>` : ''}
-      <div class="chips">${chips.join('')}</div>
-      ${g.notes ? `<div class="card-note">${esc(g.notes)}</div>` : ''}
-    </div>
-    <div class="card-tools">
-      <button class="card-tool" onclick="openEdit('${g.id}')">edit</button>
-      <button class="card-tool x" onclick="delGoal('${g.id}')">✕</button>
-    </div>
-  </div>`;
+    </div>`
+  ).join("");
 }
 
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+// ── INIT ──
+applyCfg();
+goals = JSON.parse(localStorage.getItem("goals") || "[]");
+render();
 
-// ── TOAST ─────────────────────────────────────────────────────────────────────
-let toastT = null;
-function toast(msg, type = '') {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.className = 'show' + (type ? ' ' + type : '');
-  clearTimeout(toastT);
-  toastT = setTimeout(() => el.className = '', 2600);
-}
-
-// ── LOGIN SCREEN ──────────────────────────────────────────────────────────────
-function showLoginScreen(msg) {
-  document.getElementById('login-msg').textContent = msg;
-  document.getElementById('login-screen').classList.add('show');
-}
-function hideLoginScreen() {
-  document.getElementById('login-screen').classList.remove('show');
-}
-function setLoginMsg(msg) {
-  document.getElementById('login-msg').textContent = msg;
-}
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-async function init() {
-  applyCfg();
-
-  // check for OAuth callback code
-  const params = new URLSearchParams(location.search);
-  const code = params.get('code');
-
-  if (code) {
-    showLoginScreen('signing you in…');
-    history.replaceState({}, '', location.pathname);
-    const ok = await exchangeCode(code);
-    if (!ok) {
-      showLoginScreen('sign in failed — see config');
-      setTimeout(hideLoginScreen, 3000);
-    } else {
-      hideLoginScreen();
-    }
-  } else {
-    // restore saved session
-    const saved = loadSession();
-    if (saved) {
-      session = saved;
-    }
-    hideLoginScreen();
-  }
-
-  applyAuthUI();
-  await fetchGoals();
-  render();
-}
-
-// close overlays on bg click
-document.querySelectorAll('.overlay').forEach(el => {
-  el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
-});
-
-init();
 </script>
 </body>
 </html>
