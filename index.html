@@ -137,9 +137,8 @@ body.authed .add-btns { display: flex; }
 .page { padding: 1.75rem 2rem 4rem; }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px;
-  background: var(--border);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
 }
 .sec-head {
   font-family: var(--mono);
@@ -154,32 +153,66 @@ body.authed .add-btns { display: flex; }
 
 /* ── CARD ───────────────────────────────────────────────────────────── */
 .card {
-  background: var(--bg);
+  background: var(--bg2);
+  border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
-  transition: background 0.12s;
-}
-.card:hover { background: var(--bg2); }
-.card-bg {
-  position: absolute; inset: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.1;
-  transition: opacity 0.2s;
-}
-.card:hover .card-bg { opacity: 0.16; }
-
-.card-body {
-  position: relative;
-  padding: 1.1rem 1.1rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  min-height: 148px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.card:hover { border-color: var(--border2); }
+
+/* 16:9 image area with letterboxing */
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.card-thumb-img {
+  position: absolute; inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.2s;
+}
+.card:hover .card-thumb-img { opacity: 0.9; }
+/* no cover — subtle pattern */
+.card-thumb-empty {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 12px,
+    rgba(255,255,255,0.018) 12px,
+    rgba(255,255,255,0.018) 13px
+  );
+}
+/* overlay bar at bottom of thumb for imp badge + tools */
+.card-thumb-overlay {
+  position: absolute; inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.55rem 0.6rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 50%);
+  pointer-events: none;
+}
+.card-thumb-overlay .imp { pointer-events: auto; }
+.card-thumb-overlay .card-tools { pointer-events: auto; }
+
+.card-body {
+  padding: 0.85rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
 }
 
-.card-row1 { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
-.card-titles { flex: 1; min-width: 0; }
+.card-titles { min-width: 0; }
 .card-title {
   font-size: 0.82rem;
   font-weight: 400;
@@ -188,7 +221,11 @@ body.authed .add-btns { display: flex; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
+  text-decoration: none;
+  transition: color 0.12s;
 }
+.card-title:hover { color: var(--pink); }
 .card-artist {
   font-size: 0.68rem;
   color: var(--dim);
@@ -201,15 +238,15 @@ body.authed .add-btns { display: flex; }
 .imp {
   font-family: var(--mono);
   font-size: 0.62rem;
-  border: 1px solid var(--border2);
-  color: var(--dimmer);
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0,0,0,0.55);
+  color: rgba(255,255,255,0.7);
   padding: 0.15rem 0.4rem;
   flex-shrink: 0;
   line-height: 1.4;
-  transition: all 0.12s;
 }
-.imp.hi { border-color: rgba(255,107,157,0.5); color: var(--pink); }
-.imp.md { border-color: var(--border2); color: var(--dim); }
+.imp.hi { border-color: rgba(255,107,157,0.6); color: var(--pink); }
+.imp.md { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); }
 
 .card-diff {
   font-family: var(--mono);
@@ -218,11 +255,21 @@ body.authed .add-btns { display: flex; }
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 .stars { color: var(--dimmer); }
 .stars b { color: #f5c518; font-weight: 400; }
+.mod-tag {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.35rem;
+  background: rgba(255,200,50,0.1);
+  border: 1px solid rgba(255,200,50,0.25);
+  color: #f5c518;
+}
 
-.chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.25rem; }
+.chips { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.35rem; }
 .chip {
   font-family: var(--mono);
   font-size: 0.62rem;
@@ -246,20 +293,19 @@ body.authed .add-btns { display: flex; }
 /* card edit/delete — only visible when authed + hovering */
 .card-tools {
   display: none;
-  position: absolute;
-  top: 0.6rem; right: 0.6rem;
   gap: 0.25rem;
 }
 body.authed .card:hover .card-tools { display: flex; }
 .card-tool {
   font-family: var(--mono);
   font-size: 0.58rem;
-  background: var(--bg2);
+  background: rgba(24,24,24,0.85);
   border: 1px solid var(--border2);
   color: var(--dim);
   padding: 0.25rem 0.5rem;
   cursor: pointer;
   transition: all 0.12s;
+  backdrop-filter: blur(4px);
 }
 .card-tool:hover { color: var(--text); border-color: var(--dim); }
 .card-tool.x:hover { color: var(--red); border-color: var(--red); }
@@ -554,6 +600,20 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
       </div>
     </div>
 
+    <div class="three">
+      <div class="fg">
+        <label>Mods <span class="opt">(optional)</span></label>
+        <input id="f-mods" type="text" placeholder="HDHR" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+      </div>
+      <div class="fg">
+        <label>Mod SR <span class="opt">(optional)</span></label>
+        <input id="f-modsr" type="text" placeholder="e.g. 7.43">
+      </div>
+      <div class="fg" style="display:flex;align-items:flex-end">
+        <span style="font-family:var(--mono);font-size:0.55rem;color:var(--dimmer);line-height:1.5;padding-bottom:0.7rem">Enter adjusted SR manually — use a SR calculator for your mods</span>
+      </div>
+    </div>
+
     <div class="fg">
       <label>Importance (1–10)</label>
       <div class="imp-row">
@@ -787,6 +847,8 @@ function openAdd() {
   document.getElementById('f-imp').value   = 5;
   document.getElementById('f-imp-val').textContent = '5';
   document.getElementById('f-notes').value = '';
+  document.getElementById('f-mods').value  = '';
+  document.getElementById('f-modsr').value = '';
   document.getElementById('f-done').checked = false;
   document.getElementById('add-overlay').classList.add('open');
 }
@@ -814,6 +876,8 @@ function openEdit(id) {
   document.getElementById('f-imp').value   = g.importance || 5;
   document.getElementById('f-imp-val').textContent = g.importance || 5;
   document.getElementById('f-notes').value = g.notes || '';
+  document.getElementById('f-mods').value  = g.mods  || '';
+  document.getElementById('f-modsr').value = g.modSr || '';
   document.getElementById('f-done').checked = !!g.achieved;
   document.getElementById('add-overlay').classList.add('open');
 }
@@ -828,6 +892,8 @@ async function saveGoal() {
   const acc   = document.getElementById('f-acc').value.trim();
   const grade = document.getElementById('f-grade').value.trim();
   const pp    = document.getElementById('f-pp').value.trim();
+  const mods  = document.getElementById('f-mods').value.trim().toUpperCase();
+  const modSr = document.getElementById('f-modsr').value.trim();
   const imp   = parseInt(document.getElementById('f-imp').value);
   const notes = document.getElementById('f-notes').value.trim();
   const done  = document.getElementById('f-done').checked;
@@ -836,7 +902,7 @@ async function saveGoal() {
 
   if (editId) {
     const idx = goals.findIndex(x => x.id === editId);
-    if (idx !== -1) goals[idx] = { ...goals[idx], goalAcc: acc, goalGrade: grade, goalPp: pp, importance: imp, notes, achieved: done };
+    if (idx !== -1) goals[idx] = { ...goals[idx], goalAcc: acc, goalGrade: grade, goalPp: pp, mods, modSr, importance: imp, notes, achieved: done };
   } else {
     if (goals.find(g => g.url === url)) { toast('map already in list', 'err'); btn.disabled = false; btn.textContent = 'save goal'; return; }
     let meta = pendingMeta;
@@ -844,7 +910,7 @@ async function saveGoal() {
     goals.push({
       id: 'g' + Date.now(),
       url, ...meta,
-      goalAcc: acc, goalGrade: grade, goalPp: pp,
+      goalAcc: acc, goalGrade: grade, goalPp: pp, mods, modSr,
       importance: imp, notes, achieved: done,
       addedAt: Date.now(),
     });
@@ -925,23 +991,33 @@ function card(g) {
   if (g.goalGrade) chips.push(`<span class="chip${g.achieved?' done':''}">GRADE ${esc(g.goalGrade)}</span>`);
   if (g.goalPp)    chips.push(`<span class="chip${g.achieved?' done':''}">PP ${esc(g.goalPp)}</span>`);
   if (!chips.length) chips.push(`<span class="chip empty">no targets set</span>`);
+  const displayStars = (g.mods && g.modSr) ? g.modSr : g.stars;
+  const starsLabel = (g.mods && g.modSr) ? `★ ${g.modSr}*` : (g.stars ? `★ ${g.stars}` : null);
   return `<div class="card">
-    ${g.cover ? `<div class="card-bg" style="background-image:url('${g.cover}')"></div>` : ''}
-    <div class="card-body">
-      <div class="card-row1">
-        <div class="card-titles">
-          <div class="card-title">${esc(g.title)}</div>
-          ${g.artist ? `<div class="card-artist">${esc(g.artist)}</div>` : ''}
-        </div>
+    <div class="card-thumb">
+      ${g.cover
+        ? `<div class="card-thumb-img" style="background-image:url('${g.cover}')"></div>`
+        : `<div class="card-thumb-empty"></div>`}
+      <div class="card-thumb-overlay">
         <span class="imp ${ic}">${imp}</span>
+        <div class="card-tools">
+          <button class="card-tool" onclick="openEdit('${g.id}')">edit</button>
+          <button class="card-tool x" onclick="delGoal('${g.id}')">✕</button>
+        </div>
       </div>
-      ${(g.diff||g.stars) ? `<div class="card-diff">${g.diff ? `<span>${esc(g.diff)}</span>` : ''}${g.stars ? `<span class="stars"><b>★</b> ${g.stars}</span>` : ''}</div>` : ''}
+    </div>
+    <div class="card-body">
+      <div class="card-titles">
+        <a class="card-title" href="${esc(g.url)}" target="_blank" rel="noopener">${esc(g.title)}</a>
+        ${g.artist ? `<div class="card-artist">${esc(g.artist)}</div>` : ''}
+      </div>
+      ${(g.diff || starsLabel || g.mods) ? `<div class="card-diff">
+        ${g.diff ? `<span>${esc(g.diff)}</span>` : ''}
+        ${starsLabel ? `<span class="stars"><b>★</b> ${(g.mods && g.modSr) ? esc(g.modSr)+'*' : esc(g.stars)}</span>` : ''}
+        ${g.mods ? `<span class="mod-tag">${esc(g.mods)}</span>` : ''}
+      </div>` : ''}
       <div class="chips">${chips.join('')}</div>
       ${g.notes ? `<div class="card-note">${esc(g.notes)}</div>` : ''}
-    </div>
-    <div class="card-tools">
-      <button class="card-tool" onclick="openEdit('${g.id}')">edit</button>
-      <button class="card-tool x" onclick="delGoal('${g.id}')">✕</button>
     </div>
   </div>`;
 }
