@@ -191,7 +191,7 @@ body.authed .add-btns { display: flex; }
     rgba(255,255,255,0.018) 13px
   );
 }
-/* overlay bar at bottom of thumb for imp badge + tools */
+/* overlay bar at top of thumb for imp badge + tools */
 .card-thumb-overlay {
   position: absolute; inset: 0;
   display: flex;
@@ -201,8 +201,7 @@ body.authed .add-btns { display: flex; }
   background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 50%);
   pointer-events: none;
 }
-.card-thumb-overlay .imp { pointer-events: auto; }
-.card-thumb-overlay .card-tools { pointer-events: auto; }
+.card-thumb-overlay > * { pointer-events: auto; }
 
 .card-body {
   padding: 0.85rem 1rem 1rem;
@@ -295,7 +294,7 @@ body.authed .add-btns { display: flex; }
   display: none;
   gap: 0.25rem;
 }
-body.authed .card:hover .card-tools { display: flex; }
+body.authed .card:hover .card-thumb-overlay .card-tools { display: flex; }
 .card-tool {
   font-family: var(--mono);
   font-size: 0.58rem;
@@ -766,6 +765,21 @@ async function persistGoals() {
       toast('saved', 'ok');
     } else {
       const d = await r.json().catch(() => ({}));
+      // 409 = SHA conflict (file changed elsewhere) — re-fetch SHA and retry once
+      if (r.status === 409 || (d.detail?.message || '').includes('SHA')) {
+        toast('syncing…', '');
+        const fresh = await fetch(`${WORKER}/goals`);
+        if (fresh.ok) {
+          const fd = await fresh.json();
+          goalsSha = fd.sha;
+          const r2 = await fetch(`${WORKER}/goals`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.token}` },
+            body: JSON.stringify({ goals, sha: goalsSha }),
+          });
+          if (r2.ok) { const d2 = await r2.json(); if (d2.sha) goalsSha = d2.sha; toast('saved', 'ok'); return; }
+        }
+      }
       toast(d.error || 'save failed', 'err');
     }
   } catch {
@@ -922,10 +936,10 @@ async function saveGoal() {
   btn.disabled = false; btn.textContent = 'save goal';
 }
 
-function delGoal(id) {
+async function delGoal(id) {
   if (!confirm('remove this goal?')) return;
   goals = goals.filter(g => g.id !== id);
-  persistGoals();
+  await persistGoals();
   render();
 }
 
