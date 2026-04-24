@@ -30,5 +30,23 @@
     "notes": "",
     "achieved": false,
     "addedAt": 1777039709069
+  },
+  {
+    "id": 2661970,
+    "url": "https://osu.ppy.sh/beatmapsets/1281581#osu/2661970",
+    "title": "Fubuki Guys",
+    "artist": "Hamburgaga",
+    "diff": "Amateurre's Insane",
+    "stars": "4.14",
+    "cover": "https://assets.ppy.sh/beatmaps/1281581/covers/fullsize.jpg",
+    "goalAcc": "99%",
+    "goalGrade": "",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "5.75",
+    "importance": 10,
+    "notes": "",
+    "achieved": false,
+    "addedAt": 1777057877907
   }
 ]
