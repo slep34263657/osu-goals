@@ -14,5 +14,21 @@
     "notes": "",
     "achieved": false,
     "addedAt": 1776986165886
+  },
+  {
+    "id": 2717039,
+    "url": "https://osu.ppy.sh/beatmapsets/1310761#osu/2717039",
+    "title": "Wakusei Loop",
+    "artist": "Nekomata Okayu",
+    "diff": "Orbit",
+    "stars": "5.25",
+    "cover": "https://assets.ppy.sh/beatmaps/1310761/covers/cover.jpg?1650704892",
+    "goalAcc": "98",
+    "goalGrade": "",
+    "goalPp": "",
+    "importance": 8,
+    "notes": "",
+    "achieved": false,
+    "addedAt": 1777039328925
   }
 ]
