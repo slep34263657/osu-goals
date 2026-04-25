@@ -269,12 +269,14 @@ body.authed .add-btns { display: flex; }
 
 .partial-tag {
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.55rem;
   letter-spacing: 0.06em;
-  padding: 0.1rem 0.35rem;
-  background: rgba(245,197,24,0.08);
-  border: 1px solid rgba(245,197,24,0.3);
-  color: #f5c518;
+  padding: 0.1rem 0.3rem;
+  background: rgba(200,80,80,0.07);
+  border: 1px solid rgba(200,80,80,0.25);
+  color: rgba(200,100,100,0.7);
+  margin-left: auto;
+  align-self: flex-end;
 }
 
 .card-note {
@@ -456,6 +458,74 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
   margin-right: 0.3rem;
 }
 
+/* ── SEARCH BAR ─────────────────────────────────────────────────────── */
+.search-wrap {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 0;
+  transition: width 0.2s ease;
+  border: 1px solid transparent;
+}
+.search-wrap.open {
+  width: 180px;
+  border-color: var(--border2);
+}
+#search-input {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.3rem 0.5rem;
+  outline: none;
+}
+#search-input::placeholder { color: var(--dimmer); }
+
+.search-btn {
+  background: none;
+  border: none;
+  color: var(--dimmer);
+  cursor: pointer;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1;
+  transition: color 0.12s;
+  flex-shrink: 0;
+}
+.search-btn:hover, .search-btn.active { color: var(--text); }
+
+/* ── SORT CONTROLS ───────────────────────────────────────────────────── */
+.sort-btn {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--dimmer);
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.sort-btn:hover { color: var(--dim); border-color: var(--border2); }
+.sort-btn.active { color: var(--text); border-color: var(--border2); background: var(--bg3); }
+
+/* ── GROUP HEADERS ───────────────────────────────────────────────────── */
+.group-head {
+  grid-column: 1 / -1;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dimmer);
+  padding: 0.75rem 0 0.4rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
 /* ── TOAST ──────────────────────────────────────────────────────────── */
 #toast {
   position: fixed;
@@ -505,6 +575,13 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
     <button class="tab" id="tab-c" onclick="setTab('c')">Completed</button>
   </div>
   <div class="toolbar-gap"></div>
+  <div class="search-wrap" id="search-wrap">
+    <input id="search-input" type="text" placeholder="search…" oninput="render()" autocomplete="off" spellcheck="false">
+  </div>
+  <button class="search-btn" id="search-toggle-btn" onclick="toggleSearch()" title="search">⌕</button>
+  <button class="sort-btn" id="sort-imp-btn" onclick="setSort('importance')" title="sort by importance">imp</button>
+  <button class="sort-btn" id="sort-sr-btn"  onclick="setSort('stars')"      title="sort by star rating">sr</button>
+  <button class="sort-btn" id="sort-date-btn" onclick="setSort('date')"      title="sort by date added">date</button>
   <span class="stat-pill" id="stat-pill"></span>
   <div class="add-btns">
     <button class="btn-ghost" onclick="openAdd()">+ add map</button>
@@ -586,7 +663,7 @@ textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
 
     <div class="check-row">
       <input type="checkbox" id="f-done" onchange="togglePartialFields()">
-      <label for="f-done">mark as completed</label>
+      <label for="f-done">mark as achieved / completed</label>
     </div>
 
     <div id="f-partial-wrap" style="display:none;margin-top:0.85rem;padding:0.85rem;background:var(--bg3);border:1px solid var(--border)">
@@ -984,15 +1061,6 @@ async function doBulk() {
   st.textContent = '';
 }
 
-// ── RENDER ────────────────────────────────────────────────────────────────────
-let tab = 'g';
-function setTab(t) {
-  tab = t;
-  document.getElementById('tab-g').classList.toggle('active', t === 'g');
-  document.getElementById('tab-c').classList.toggle('active', t === 'c');
-  render();
-}
-
 function isFullyAchieved(g) {
   if (!g.achieved) return false;
   if (g.goalAcc   && g.achievedAcc   === false) return false;
@@ -1001,21 +1069,118 @@ function isFullyAchieved(g) {
   return true;
 }
 
+// ── RENDER ────────────────────────────────────────────────────────────────────
+let tab      = 'g';
+let sortMode = 'importance'; // 'importance' | 'stars' | 'date'
+
+function setTab(t) {
+  tab = t;
+  document.getElementById('tab-g').classList.toggle('active', t === 'g');
+  document.getElementById('tab-c').classList.toggle('active', t === 'c');
+  render();
+}
+
+function setSort(mode) {
+  sortMode = sortMode === mode ? 'importance' : mode; // toggle back to default on re-click
+  document.getElementById('sort-imp-btn').classList.toggle('active',  sortMode === 'importance');
+  document.getElementById('sort-sr-btn').classList.toggle('active',   sortMode === 'stars');
+  document.getElementById('sort-date-btn').classList.toggle('active', sortMode === 'date');
+  render();
+}
+
+function toggleSearch() {
+  const wrap = document.getElementById('search-wrap');
+  const btn  = document.getElementById('search-toggle-btn');
+  const isOpen = wrap.classList.toggle('open');
+  btn.classList.toggle('active', isOpen);
+  if (isOpen) {
+    document.getElementById('search-input').focus();
+  } else {
+    document.getElementById('search-input').value = '';
+    render();
+  }
+}
+
+function getQuery() {
+  return document.getElementById('search-input').value.trim().toLowerCase();
+}
+
+function matchesQuery(g, q) {
+  if (!q) return true;
+  return [g.title, g.artist, g.diff, g.mods, g.goalAcc, g.goalGrade, g.goalPp, g.notes, String(g.stars || ''), String(g.importance || '')]
+    .some(v => v && String(v).toLowerCase().includes(q));
+}
+
+function sortGoals(arr) {
+  return [...arr].sort((a, b) => {
+    if (sortMode === 'stars') {
+      return (parseFloat(b.modSr || b.stars) || 0) - (parseFloat(a.modSr || a.stars) || 0);
+    }
+    if (sortMode === 'date') {
+      return (b.addedAt || 0) - (a.addedAt || 0);
+    }
+    // default: importance
+    return (b.importance || 5) - (a.importance || 5);
+  });
+}
+
+// when grouping by importance, bucket into High (8-10), Mid (4-7), Low (1-3)
+function groupByImportance(arr) {
+  const high = arr.filter(g => (g.importance || 5) >= 8);
+  const mid  = arr.filter(g => (g.importance || 5) >= 4 && (g.importance || 5) < 8);
+  const low  = arr.filter(g => (g.importance || 5) < 4);
+  const out = [];
+  if (high.length) { out.push({ label: 'high  ·  8–10', items: high }); }
+  if (mid.length)  { out.push({ label: 'mid  ·  4–7',   items: mid  }); }
+  if (low.length)  { out.push({ label: 'low  ·  1–3',   items: low  }); }
+  return out;
+}
+
+function renderGrid(el, items) {
+  const q = getQuery();
+  const filtered = items.filter(g => matchesQuery(g, q));
+  const sorted   = sortGoals(filtered);
+
+  if (!sorted.length) {
+    el.innerHTML = `<div class="empty">${q ? 'no results for "' + esc(q) + '"' : 'nothing here yet'}</div>`;
+    return;
+  }
+
+  // group by importance only when sorting by importance and no search active
+  if (sortMode === 'importance' && !q) {
+    const groups = groupByImportance(sorted);
+    el.innerHTML = groups.map(grp =>
+      `<div class="group-head">${grp.label}</div>` + grp.items.map(card).join('')
+    ).join('');
+  } else {
+    el.innerHTML = sorted.map(card).join('');
+  }
+}
+
 function render() {
-  const active = goals.filter(g => !isFullyAchieved(g)).sort((a,b) => (b.importance||5)-(a.importance||5));
-  const done   = goals.filter(g =>  isFullyAchieved(g)).sort((a,b) => (b.importance||5)-(a.importance||5));
+  const q      = getQuery();
+  const active = goals.filter(g => !isFullyAchieved(g));
+  const done   = goals.filter(g =>  isFullyAchieved(g));
+
+  const activeFiltered = active.filter(g => matchesQuery(g, q));
+  const doneFiltered   = done.filter(g => matchesQuery(g, q));
 
   document.getElementById('stat-pill').innerHTML =
-    `<b>${active.length}</b> goals · <b>${done.length}</b> done`;
+    q ? `<b>${activeFiltered.length + doneFiltered.length}</b> results`
+      : `<b>${active.length}</b> goals · <b>${done.length}</b> done`;
 
   document.getElementById('g-grid').style.display         = tab === 'g' ? '' : 'none';
   document.getElementById('completed-wrap').style.display = tab === 'c' ? '' : 'none';
 
-  document.getElementById('g-grid').innerHTML =
-    active.length ? active.map(card).join('') : `<div class="empty">no goals yet</div>`;
-  document.getElementById('c-grid').innerHTML =
-    done.length ? done.map(card).join('') : `<div class="empty">nothing completed yet</div>`;
+  renderGrid(document.getElementById('g-grid'),  active);
+  renderGrid(document.getElementById('c-grid'),  done);
+
+  // keep sort buttons in sync
+  document.getElementById('sort-imp-btn').classList.toggle('active',  sortMode === 'importance');
+  document.getElementById('sort-sr-btn').classList.toggle('active',   sortMode === 'stars');
+  document.getElementById('sort-date-btn').classList.toggle('active', sortMode === 'date');
 }
+
 
 function card(g) {
   const imp = g.importance || 5;
@@ -1062,10 +1227,10 @@ function card(g) {
         ${g.diff ? `<span>${esc(g.diff)}</span>` : ''}
         ${starsLabel ? `<span class="stars"><b>★</b> ${esc(starsLabel)}</span>` : ''}
         ${g.mods ? `<span class="mod-tag">${esc(g.mods)}</span>` : ''}
-        ${isPartial ? `<span class="partial-tag">partial</span>` : ''}
-      </div>` : (isPartial ? `<div class="card-diff"><span class="partial-tag">partial</span></div>` : '')}
+      </div>` : ''}
       <div class="chips">${chips.join('')}</div>
       ${g.notes ? `<div class="card-note">${esc(g.notes)}</div>` : ''}
+      ${isPartial ? `<div style="display:flex;justify-content:flex-end;margin-top:0.35rem"><span class="partial-tag">partial</span></div>` : ''}
     </div>
   </div>`;
 }
@@ -1099,6 +1264,9 @@ document.querySelectorAll('.overlay').forEach(el => {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('pw-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') submitLogin();
+  });
+  document.getElementById('search-input').addEventListener('keydown', e => {
+    if (e.key === 'Escape') toggleSearch();
   });
 });
 
