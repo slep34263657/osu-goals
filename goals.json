@@ -439,5 +439,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777161085025
+  },
+  {
+    "id": "g1777161196552",
+    "title": "SAIKYO TENSAI WONDERFUL WORLD of KORONE",
+    "artist": "Inugami Korone",
+    "diff": "Yubi Yubi",
+    "stars": "5.99",
+    "cover": "https://assets.ppy.sh/beatmaps/1431435/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1431435#osu/2946557",
+    "goalAcc": "",
+    "goalGrade": "80%",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "8.92",
+    "importance": 5,
+    "notes": "need pass (tapping gapped)",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777161196552
   }
 ]
