@@ -166,5 +166,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777159789366
+  },
+  {
+    "id": "g1777159840363",
+    "title": "Kawayo",
+    "artist": "Nakiri Ayame",
+    "diff": "ilwari's Insane",
+    "stars": "5.01",
+    "cover": "https://assets.ppy.sh/beatmaps/2022917/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2022917#osu/4213427",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "7.16",
+    "importance": 9,
+    "notes": "300 bpm tapping hard",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777159840363
   }
 ]
