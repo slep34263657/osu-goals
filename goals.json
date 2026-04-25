@@ -229,5 +229,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777159951411
+  },
+  {
+    "id": "g1777159993649",
+    "title": "SING & SMILE",
+    "artist": "Hatsune Miku",
+    "diff": "Insane",
+    "stars": "4.67",
+    "cover": "https://assets.ppy.sh/beatmaps/27810/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/27810#osu/93027",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.65",
+    "importance": 5,
+    "notes": "erm",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777159993649
   }
 ]
