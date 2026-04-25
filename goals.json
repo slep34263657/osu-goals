@@ -334,5 +334,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777160315408
+  },
+  {
+    "id": "g1777160420918",
+    "title": "Hallelujah*Essaim",
+    "artist": "Tomita Miyu, Onishi Saori, Ohzora Naomi, Hanazawa Kana",
+    "diff": "Akitoshi's Light Insane",
+    "stars": "4.39",
+    "cover": "https://assets.ppy.sh/beatmaps/559248/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/559248#osu/1188777",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.2",
+    "importance": 5,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1777160420918
   }
 ]
