@@ -460,5 +460,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777161196552
+  },
+  {
+    "id": "g1777161542188",
+    "title": "I will",
+    "artist": "solfa feat.Chata",
+    "diff": "Laurier's Insane",
+    "stars": "4.02",
+    "cover": "https://assets.ppy.sh/beatmaps/246416/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/246416#osu/567607",
+    "goalAcc": "99%",
+    "goalGrade": "s",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "",
+    "importance": 9,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1777161542188
   }
 ]
