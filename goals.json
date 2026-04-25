@@ -16,23 +16,5 @@
     "notes": "",
     "achieved": false,
     "addedAt": 1777121747945
-  },
-  {
-    "id": "g1777121809700",
-    "title": "TEST ME (TV SIZE)",
-    "artist": "CHANMINA",
-    "diff": "CHASE ME",
-    "stars": "4.42",
-    "cover": "https://assets.ppy.sh/beatmaps/2496510/covers/fullsize.jpg",
-    "url": "https://osu.ppy.sh/beatmapsets/2496510#osu/5488200",
-    "goalAcc": "44%",
-    "goalGrade": "SS",
-    "goalPp": "5PP",
-    "mods": "DT",
-    "modSr": "888",
-    "importance": 1,
-    "notes": "TEST TEST TEST",
-    "achieved": false,
-    "addedAt": 1777121809700
   }
 ]
