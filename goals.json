@@ -103,5 +103,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777159661343
+  },
+  {
+    "id": "g1777159694777",
+    "title": "Nichiyoubi no Himitsu (Short Ver.)",
+    "artist": "HoneyWorks meets CHiCO & sana",
+    "diff": "Xenon's Insane",
+    "stars": "4.07",
+    "cover": "https://assets.ppy.sh/beatmaps/1491394/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1491394#osu/3057068",
+    "goalAcc": "599",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "5.74",
+    "importance": 5,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1777159694777
   }
 ]
