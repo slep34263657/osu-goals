@@ -40,5 +40,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777159422429
+  },
+  {
+    "id": "g1777159467936",
+    "title": "Oboetete Ii yo",
+    "artist": "KOTOKO",
+    "diff": "Insane",
+    "stars": "5.26",
+    "cover": "https://assets.ppy.sh/beatmaps/53791/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/53791#osu/163836",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "7.52",
+    "importance": 7,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777159467936
   }
 ]
