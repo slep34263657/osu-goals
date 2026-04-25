@@ -355,5 +355,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1777160420918
+  },
+  {
+    "id": "g1777160510046",
+    "title": "U.Nknown Goose",
+    "artist": "Au",
+    "diff": "Extra",
+    "stars": "5.95",
+    "cover": "https://assets.ppy.sh/beatmaps/29454/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/29454#osu/97783",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "NM",
+    "modSr": "5.94",
+    "importance": 8,
+    "notes": "AR9 hard",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1777160510046
   }
 ]
