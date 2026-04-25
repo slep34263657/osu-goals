@@ -61,5 +61,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777159467936
+  },
+  {
+    "id": "g1777159554018",
+    "title": "Setsuna Trip (Short Ver.)",
+    "artist": "Last Note.",
+    "diff": "Zenkai",
+    "stars": "5.99",
+    "cover": "https://assets.ppy.sh/beatmaps/51065/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/51065#osu/205941",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.29",
+    "importance": 7,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": false,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1777159554018
   }
 ]
