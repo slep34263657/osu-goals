@@ -70,5 +70,23 @@
     "notes": "",
     "achieved": false,
     "addedAt": 1777077516652
+  },
+  {
+    "id": 98452,
+    "url": "https://osu.ppy.sh/beatmapsets/29706#osu/98452",
+    "title": "Dancing Kong Fu",
+    "artist": "Jin Yan Xie",
+    "diff": "Insane",
+    "stars": "4.90",
+    "cover": "https://assets.ppy.sh/beatmaps/29706/covers/fullsize.jpg",
+    "goalAcc": "",
+    "goalGrade": "",
+    "goalPp": "",
+    "mods": "",
+    "modSr": "",
+    "importance": 5,
+    "notes": "",
+    "achieved": false,
+    "addedAt": 1777077719971
   }
 ]
