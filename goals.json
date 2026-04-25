@@ -418,5 +418,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777160794456
+  },
+  {
+    "id": "g1777161085025",
+    "title": "Sensei ni Itchao",
+    "artist": "philo",
+    "diff": "Insane",
+    "stars": "4.38",
+    "cover": "https://assets.ppy.sh/beatmaps/1797787/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1797787#osu/3685221",
+    "goalAcc": "",
+    "goalGrade": "SS",
+    "goalPp": "",
+    "mods": "",
+    "modSr": "6.21",
+    "importance": 7,
+    "notes": "brain issues",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777161085025
   }
 ]
