@@ -145,5 +145,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777159731723
+  },
+  {
+    "id": "g1777159789366",
+    "title": "Uikousen",
+    "artist": "Aiobahn +81 feat. Shigure Ui",
+    "diff": "Laurier",
+    "stars": "4.39",
+    "cover": "https://assets.ppy.sh/beatmaps/2425205/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2425205#osu/5287611",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.2",
+    "importance": 8,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777159789366
   }
 ]
