@@ -313,5 +313,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777160239445
+  },
+  {
+    "id": "g1777160315408",
+    "title": "Hisui no Machi",
+    "artist": "sana",
+    "diff": "Rumi's Extra",
+    "stars": "6.19",
+    "cover": "https://assets.ppy.sh/beatmaps/1017483/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1017483#osu/2239240",
+    "goalAcc": "90%",
+    "goalGrade": "",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "8.92",
+    "importance": 5,
+    "notes": "need pass and 90% would be nice",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777160315408
   }
 ]
