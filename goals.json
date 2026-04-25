@@ -292,5 +292,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777160115228
+  },
+  {
+    "id": "g1777160239445",
+    "title": "Songs Compilation",
+    "artist": "sana",
+    "diff": "Love",
+    "stars": "6.22",
+    "cover": "https://assets.ppy.sh/beatmaps/516126/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/516126#osu/1095893",
+    "goalAcc": "",
+    "goalGrade": "",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "9.38",
+    "importance": 10,
+    "notes": "need pass",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777160239445
   }
 ]
