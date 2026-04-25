@@ -124,5 +124,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1777159694777
+  },
+  {
+    "id": "g1777159731723",
+    "title": "Shura no Niwa",
+    "artist": "MinusP",
+    "diff": "Insane",
+    "stars": "5.11",
+    "cover": "https://assets.ppy.sh/beatmaps/98233/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/98233#osu/262126",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "7.19",
+    "importance": 6,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777159731723
   }
 ]
