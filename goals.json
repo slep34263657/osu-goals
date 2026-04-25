@@ -397,5 +397,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777160757690
+  },
+  {
+    "id": "g1777160794456",
+    "title": "Hyadain's Jojo Yujo",
+    "artist": "Inugami Korone & Nekomata Okayu",
+    "diff": "Yuuma & Amateurre's Insane",
+    "stars": "4.87",
+    "cover": "https://assets.ppy.sh/beatmaps/1279298/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1279298#osu/2657559",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.84",
+    "importance": 10,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777160794456
   }
 ]
