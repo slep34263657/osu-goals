@@ -82,5 +82,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1777159554018
+  },
+  {
+    "id": "g1777159661343",
+    "title": "as x sist ~Amae Beta na Watashi Nari ni~ (Short Ver.)",
+    "artist": "Kawada Mami",
+    "diff": "Extra",
+    "stars": "5.00",
+    "cover": "https://assets.ppy.sh/beatmaps/836969/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/836969#osu/1752558",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DR",
+    "modSr": "7",
+    "importance": 7,
+    "notes": "first 5 star pass >_<",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777159661343
   }
 ]
