@@ -208,5 +208,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777159892546
+  },
+  {
+    "id": "g1777159951410",
+    "title": "Kokkei to Iu Nakare",
+    "artist": "Chata",
+    "diff": "Collab Insane",
+    "stars": "4.76",
+    "cover": "https://assets.ppy.sh/beatmaps/165224/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/165224#osu/444605",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.77",
+    "importance": 5,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777159951411
   }
 ]
