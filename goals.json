@@ -376,5 +376,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1777160510046
+  },
+  {
+    "id": "g1777160757690",
+    "title": "SAIKYO TENSAI WONDERFUL WORLD of KORONE",
+    "artist": "Inugami Korone",
+    "diff": "Insane",
+    "stars": "4.81",
+    "cover": "https://assets.ppy.sh/beatmaps/1431435/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1431435#osu/2947472",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.89",
+    "importance": 9,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777160757690
   }
 ]
