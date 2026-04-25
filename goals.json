@@ -481,5 +481,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1777161542188
+  },
+  {
+    "id": "g1777161573787",
+    "title": "a piacere (Game Ver.)",
+    "artist": "KOTOKO",
+    "diff": "laurier's insane",
+    "stars": "4.15",
+    "cover": "https://assets.ppy.sh/beatmaps/2356848/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2356848#osu/5080027",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "5.72",
+    "importance": 5,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1777161573787
   }
 ]
