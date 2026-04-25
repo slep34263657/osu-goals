@@ -8,13 +8,16 @@
     "cover": "https://assets.ppy.sh/beatmaps/1281581/covers/fullsize.jpg",
     "url": "https://osu.ppy.sh/beatmapsets/1281581#osu/2661970",
     "goalAcc": "99%",
-    "goalGrade": "",
+    "goalGrade": "S",
     "goalPp": "",
     "mods": "DT",
     "modSr": "5.75",
-    "importance": 9,
+    "importance": 10,
     "notes": "",
-    "achieved": false,
-    "addedAt": 1777121747945
+    "achieved": true,
+    "addedAt": 1777121747945,
+    "achievedAcc": true,
+    "achievedGrade": false,
+    "achievedPp": true
   }
 ]
