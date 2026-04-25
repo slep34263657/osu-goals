@@ -271,5 +271,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777160083577
+  },
+  {
+    "id": "g1777160115228",
+    "title": "Sayounara, Hanadorobou-san",
+    "artist": "sana",
+    "diff": "Insane",
+    "stars": "4.96",
+    "cover": "https://assets.ppy.sh/beatmaps/1295063/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1295063#osu/2697301",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.89",
+    "importance": 6,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777160115228
   }
 ]
