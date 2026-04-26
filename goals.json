@@ -754,5 +754,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777162144099
+  },
+  {
+    "id": "g1777162190293",
+    "title": "Chase the world (TV Size)",
+    "artist": "May'n",
+    "diff": "Insane",
+    "stars": "4.51",
+    "cover": "https://assets.ppy.sh/beatmaps/50988/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/50988#osu/156509",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.44",
+    "importance": 5,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777162190293
   }
 ]
