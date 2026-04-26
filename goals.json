@@ -649,5 +649,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777161814141
+  },
+  {
+    "id": "g1777161866667",
+    "title": "Override",
+    "artist": "Shirakami Fubuki with Kurokami Fubuki",
+    "diff": "Laurier's Insane",
+    "stars": "4.59",
+    "cover": "https://assets.ppy.sh/beatmaps/2278555/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2278555#osu/4868672",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.79",
+    "importance": 10,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777161866667
   }
 ]
