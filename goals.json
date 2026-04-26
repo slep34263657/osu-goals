@@ -712,5 +712,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777162028584
+  },
+  {
+    "id": "g1777162061687",
+    "title": "Harukaze Dance",
+    "artist": "Chata",
+    "diff": "Insane",
+    "stars": "4.63",
+    "cover": "https://assets.ppy.sh/beatmaps/94993/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/94993#osu/255342",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.52",
+    "importance": 5,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777162061687
   }
 ]
