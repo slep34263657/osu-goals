@@ -502,5 +502,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1777161573787
+  },
+  {
+    "id": "g1777161628241",
+    "title": "seven colors (Game Ver.)",
+    "artist": "Mitose Noriko",
+    "diff": "Laurier's Insane",
+    "stars": "4.13",
+    "cover": "https://assets.ppy.sh/beatmaps/2229382/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2229382#osu/4730366",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "5.78",
+    "importance": 5,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1777161628241
   }
 ]
