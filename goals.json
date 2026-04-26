@@ -607,5 +607,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777161751325
+  },
+  {
+    "id": "g1777161773956",
+    "title": "I swear (TV Size)",
+    "artist": "sweet ARMS",
+    "diff": "Laurier's Insane",
+    "stars": "4.39",
+    "cover": "https://assets.ppy.sh/beatmaps/2392955/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2392955#osu/5313840",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.16",
+    "importance": 5,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": false,
+    "achievedPp": true,
+    "addedAt": 1777161773956
   }
 ]
