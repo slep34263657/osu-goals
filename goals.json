@@ -523,5 +523,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1777161628241
+  },
+  {
+    "id": "g1777161654626",
+    "title": "Wasureji no Saihate (Game Ver.)",
+    "artist": "nayuta",
+    "diff": "Laurier's Insane",
+    "stars": "4.33",
+    "cover": "https://assets.ppy.sh/beatmaps/2313671/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2313671#osu/4951720",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "",
+    "importance": 7,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1777161654626
   }
 ]
