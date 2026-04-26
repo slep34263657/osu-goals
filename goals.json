@@ -670,5 +670,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777161866667
+  },
+  {
+    "id": "g1777161916248",
+    "title": "Himekoi",
+    "artist": "Kano",
+    "diff": "Insane",
+    "stars": "4.78",
+    "cover": "https://assets.ppy.sh/beatmaps/691227/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/691227#osu/1462812",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "",
+    "importance": 5,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777161916248
   }
 ]
