@@ -544,5 +544,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1777161654626
+  },
+  {
+    "id": "g1777161695653",
+    "title": "Watch Me",
+    "artist": "Kagura Mea x Yuuki Sakuna",
+    "diff": "Laurier's Insane",
+    "stars": "4.27",
+    "cover": "https://assets.ppy.sh/beatmaps/2405262/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2405262#osu/5304033",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.02",
+    "importance": 10,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777161695653
   }
 ]
