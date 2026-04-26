@@ -733,5 +733,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777162061687
+  },
+  {
+    "id": "g1777162144099",
+    "title": "Ui Mugibatake de Tsukamaete",
+    "artist": "Shigure Ui",
+    "diff": "Collab Insane",
+    "stars": "4.47",
+    "cover": "https://assets.ppy.sh/beatmaps/2268913/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2268913#osu/4871812",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.38",
+    "importance": 10,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777162144099
   }
 ]
