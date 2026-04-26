@@ -586,5 +586,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777161730039
+  },
+  {
+    "id": "g1777161751325",
+    "title": "Eden's Song",
+    "artist": "Hana",
+    "diff": "Laurier's Insane",
+    "stars": "4.43",
+    "cover": "https://assets.ppy.sh/beatmaps/2121119/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2121119#osu/4518706",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "",
+    "importance": 5,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777161751325
   }
 ]
