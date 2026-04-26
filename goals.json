@@ -565,5 +565,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1777161695653
+  },
+  {
+    "id": "g1777161730039",
+    "title": "Looping the Rooms feat. Hatsune Miku",
+    "artist": "rusino",
+    "diff": "Laurier's Insane",
+    "stars": "4.49",
+    "cover": "https://assets.ppy.sh/beatmaps/2514004/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2514004#osu/5542525",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.38",
+    "importance": 5,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1777161730039
   }
 ]
