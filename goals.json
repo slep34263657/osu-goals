@@ -817,5 +817,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1780474627479
+  },
+  {
+    "id": "g1780656081756",
+    "title": "FINE!! (Cut Ver.)",
+    "artist": "TOMATO GUMMY feat. Shirakami Fubuki",
+    "diff": "Insane",
+    "stars": "4.63",
+    "cover": "https://assets.ppy.sh/beatmaps/1298047/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1298047#osu/2692598",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "300",
+    "mods": "DT",
+    "modSr": "6.61",
+    "importance": 10,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1780656081756
   }
 ]
