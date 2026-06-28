@@ -964,5 +964,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1782676502866
+  },
+  {
+    "id": "g1782676572079",
+    "title": "Shiny Smily Story",
+    "artist": "hololive IDOL PROJECT",
+    "diff": "Nymphe's Insane",
+    "stars": "4.33",
+    "cover": "https://assets.ppy.sh/beatmaps/1251840/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1251840#osu/2601894",
+    "goalAcc": "",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DTHR",
+    "modSr": "7.03",
+    "importance": 10,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1782676572079
   }
 ]
