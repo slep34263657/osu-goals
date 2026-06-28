@@ -943,5 +943,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1782676393626
+  },
+  {
+    "id": "g1782676455397",
+    "title": "Wings of Courage -Sora o Koete-",
+    "artist": "Kawada Mami",
+    "diff": "Insane",
+    "stars": "4.64",
+    "cover": "https://assets.ppy.sh/beatmaps/205095/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/205095#osu/484269",
+    "goalAcc": "99.5%",
+    "goalGrade": "S",
+    "goalPp": "400pp",
+    "mods": "DT",
+    "modSr": "6.59%",
+    "importance": 8,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1782676455397
   }
 ]
