@@ -880,5 +880,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1782676234758
+  },
+  {
+    "id": "g1782676293484",
+    "title": "Corruption",
+    "artist": "moka",
+    "diff": "Usaha's Insane",
+    "stars": "4.09",
+    "cover": "https://assets.ppy.sh/beatmaps/2495396/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/2495396#osu/5484944",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "5.79",
+    "importance": 9,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": false,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1782676293484
   }
 ]
