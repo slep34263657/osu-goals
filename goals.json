@@ -838,5 +838,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1780656081756
+  },
+  {
+    "id": "g1782676196534",
+    "title": "Kuusou Mesorogiwi (TV Size)",
+    "artist": "Yousei Teikoku",
+    "diff": "Kite",
+    "stars": "4.52",
+    "cover": "https://assets.ppy.sh/beatmaps/38565/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/38565#osu/123390",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "300pp",
+    "mods": "DT",
+    "modSr": "6.3",
+    "importance": 10,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1782676196534
   }
 ]
