@@ -964,5 +964,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1782676455397
+  },
+  {
+    "id": "g1782676502866",
+    "title": "Hotohashiru",
+    "artist": "ORESAMA",
+    "diff": "Akitoshi's Insane",
+    "stars": "4.76",
+    "cover": "https://assets.ppy.sh/beatmaps/1090567/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/1090567#osu/3477179",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "400pp",
+    "mods": "DT",
+    "modSr": "6.65",
+    "importance": 8,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1782676502866
   }
 ]
