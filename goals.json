@@ -859,5 +859,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1782676196534
+  },
+  {
+    "id": "g1782676234758",
+    "title": "Endless Tears",
+    "artist": "CLIFF EDGE feat. Nakamura Maiko",
+    "diff": "Insane",
+    "stars": "4.28",
+    "cover": "https://assets.ppy.sh/beatmaps/123489/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/123489#osu/321506",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "300pp",
+    "mods": "DT",
+    "modSr": "6",
+    "importance": 10,
+    "notes": "",
+    "achieved": true,
+    "achievedAcc": true,
+    "achievedGrade": true,
+    "achievedPp": true,
+    "addedAt": 1782676234758
   }
 ]
