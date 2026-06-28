@@ -922,5 +922,26 @@
     "achievedGrade": false,
     "achievedPp": false,
     "addedAt": 1782676332742
+  },
+  {
+    "id": "g1782676393626",
+    "title": "Ifuudoudou",
+    "artist": "Umetora",
+    "diff": "Insane",
+    "stars": "4.75",
+    "cover": "https://assets.ppy.sh/beatmaps/84023/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/84023#osu/231825",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "400pp",
+    "mods": "DT",
+    "modSr": "6.67",
+    "importance": 8,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1782676393626
   }
 ]
