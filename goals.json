@@ -901,5 +901,26 @@
     "achievedGrade": true,
     "achievedPp": true,
     "addedAt": 1782676293484
+  },
+  {
+    "id": "g1782676332742",
+    "title": "Psycho Teddy",
+    "artist": "Psycho Teddy",
+    "diff": "PsYcHo",
+    "stars": "4.52",
+    "cover": "https://assets.ppy.sh/beatmaps/27901/covers/fullsize.jpg",
+    "url": "https://osu.ppy.sh/beatmapsets/27901#osu/93705",
+    "goalAcc": "99%",
+    "goalGrade": "S",
+    "goalPp": "",
+    "mods": "DT",
+    "modSr": "6.44",
+    "importance": 8,
+    "notes": "",
+    "achieved": false,
+    "achievedAcc": false,
+    "achievedGrade": false,
+    "achievedPp": false,
+    "addedAt": 1782676332742
   }
 ]
